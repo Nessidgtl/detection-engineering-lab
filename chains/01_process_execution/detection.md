@@ -18,7 +18,7 @@
 
 ## **Simulate (Powershell):**
 
-    Open notepad.exe through double-click.
+    Open notepad.exe through double-click
     Run as admin -> Powershell (High) -> notepad.exe (High)
 
 ## **Notes / Observations:**
@@ -26,7 +26,7 @@ After opening both notepad.exe versions under different context, I closed Powers
 It created a sequence of interesting consequences observed through Process Explorer:
 - The parent process (PowerShell) terminated
 - Notepad continued running independently
-- In process tools, it appeared as: *<Non-existent Process> → notepad.exe (High)*
+- In process tools, it appeared as: Non-existent Process (PID) → notepad.exe (High)
 
 After careful research of this situation I found out the existence of a basic rule:
 - When a parent process terminates, the child process continues running with its original context (in this case, High integrity).

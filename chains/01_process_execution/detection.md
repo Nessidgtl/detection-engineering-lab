@@ -18,8 +18,8 @@
 
 ## **Simulate (Powershell):**
 
-    *Open notepad.exe through double-click.*
-    *Run as admin -> Powershell (High) -> notepad.exe (High)*
+    Open notepad.exe through double-click.
+    Run as admin -> Powershell (High) -> notepad.exe (High)
 
 ## **Notes / Observations:**
 After opening both notepad.exe versions under different context, I closed Powershell only.

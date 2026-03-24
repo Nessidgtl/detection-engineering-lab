@@ -18,13 +18,21 @@
 
 ## **Simulate (Powershell):**
 
-```powershell
-# Launch PowerShell from Explorer-like context
-Start-Process powershell.exe -ArgumentList "-NoProfile -Command `"Start-Sleep 5`""
+*Open notepad.exe through double-click.*
+*Run as admin -> Powershell (High) -> notepad.exe (High)*
 
-# Launch cmd as another execution engine
-Start-Process cmd.exe /c "timeout /t 5"
-```
+## **Notes / Observations:**
+After opening both notepad.exe versions under different context, I closed Powershell only.
+It created a sequence of interesting consequences observed through Process Explorer:
+- The parent process (PowerShell) terminated
+- Notepad continued running independently
+- In process tools, it appeared as: *<Non-existent Process> → notepad.exe (High)*
+
+After careful research of this situation I found out the existence of a basic rule:
+- When a parent process terminates, the child process continues running with its original context (in this case, High integrity).
+- The parent-child relationship is preserved only as a recorded PID leftover, so once the parent exits, the child appears as having a non-existent parent.
+- This happens because process relationships are fixed at creation time and are not updated dynamically during runtime.
+- So it can be difficult to understand what triggered a suspicious child process later on without reliable historical logging (like Sysmon or any available SIEM), allowing to check what process this specific PID was assigned to earlier.
 
 ## **First Detection Idea (for the most interesting case):**
 

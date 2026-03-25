@@ -3,7 +3,6 @@
 
 This repository documents a structured approach to detection engineering by breaking real-world attack behavior into analyzable chains, then translating them into practical detections.
 
-⸻
 
 ## Focus
 - Decomposing attacks into step-by-step behavior chains
@@ -17,7 +16,6 @@ Instead of mapping techniques directly from MITRE ATT&CK, this project focuses o
 - Why detections fail or become noisy
 - How attackers can adapt or evade
 
-⸻
 
 ## Structure
 - chains/ → Attack behavior broken into clear, logical steps

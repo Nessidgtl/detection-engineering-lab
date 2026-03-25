@@ -1,13 +1,26 @@
 # Detection Engineering Lab
 
-This repository documents my hands-on practice building behavioral detections based on real attack patterns.
+
+This repository documents a structured approach to detection engineering by breaking real-world attack behavior into analyzable chains, then translating them into practical detections.
+
+⸻
 
 ## Focus
-- Breaking attacks into behavior chains
-- Simulating activity in a lab
-- Designing and refining detections
+	•	Decomposing attacks into step-by-step behavior chains
+	•	Understanding what actually happens on a system (processes, tokens, logs)
+	•	Building detections from behavior, not signatures
+	•	Identifying false positives, blind spots, and bypasses
+
+Instead of mapping techniques directly from MITRE ATT&CK, this project focuses on:
+	•	How attacks unfold in reality
+	•	What telemetry is actually available
+	•	Why detections fail or become noisy
+	•	How attackers can adapt or evade
+
+⸻
 
 ## Structure
-- chains/ → behavior breakdowns
-- detections/ → detection logic and writeups
-- methodology/ → approach and ideas
+	•	chains/ → Attack behavior broken into clear, logical steps
+	•	detections/ → Detection logic (EQL/KQL) with reasoning and tradeoffs
+	•	methodology/ → Detection thinking, patterns, and design approach
+

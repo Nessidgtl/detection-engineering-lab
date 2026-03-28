@@ -1,4 +1,4 @@
-# Chain 2: Medium context → High execution
+# Medium → High Integrity process (Integrity Boundary Crossing)
 
 ## **Understand the behavior:**
 

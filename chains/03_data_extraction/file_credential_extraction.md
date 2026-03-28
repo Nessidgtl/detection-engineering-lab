@@ -1,4 +1,4 @@
-# Chain 3: Dump file → Credential extraction
+# Dump file → Credential extraction
 
 ## **Understand the behavior:**
 

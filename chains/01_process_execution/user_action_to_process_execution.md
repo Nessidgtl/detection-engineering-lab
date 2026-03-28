@@ -1,10 +1,10 @@
-# Chain 1: User action → Process execution
+# User action → Process execution
 
 ## **Understand the behavior:**
 
 - ### **What is happening?**
     - User performs an action that results in a creation of a new process
-- ### **What was required? What counted as action:**
+- ### **What is required? What counted as action:**
     - Double-clicking a file
     - Opening a document
     - Running a downloaded executable

@@ -1,4 +1,4 @@
-u# **Phishing → Macro/Script → Child Process**
+# **Phishing → Macro/Script → Child Process**
 
 ## **Understand the behavior:**
 

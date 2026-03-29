@@ -1,4 +1,4 @@
-# **Phishing → Macro/Script → Child Process**
+u# **Phishing → Macro/Script → Child Process**
 
 ## **Understand the behavior:**
 
@@ -66,7 +66,7 @@ This quickly becomes a behavioral anomaly, very visible, very traceable, yet eas
 
 ***Key Idea:** This detection identifies initial access execution by focusing on abnormal process creation chain originated from user-facing applications. Nothing fancy, but extremely common.*
 
-***References (behavioral patterns & techniques):***
+****References:***
 - MITRE ATT&CK – T1566 (Phishing), T1204 (User Execution), T1059 (Command Execution)
 - Microsoft – Office spawning child processes detection guidance
 - Red Canary / Atomic Red Team – macro → PowerShell execution patterns

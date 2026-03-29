@@ -1,4 +1,4 @@
-# **Credentials → Authentication (Lateral Movement)**
+# **Credentials → Authentication**
 
 ## **Understand the behavior:**
 

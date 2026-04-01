@@ -1,1 +1,0 @@
-Overarching detection template goes here

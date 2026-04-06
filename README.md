@@ -11,13 +11,17 @@ A hands-on detection engineering lab focused on translating attacker behavior in
 
 
 ## Approach
-Instead of mapping techniques directly from MITRE ATT&CK, this project focuses on:
-- How attacks unfold in real life
-- What telemetry is actually available
+Instead of relying purely on [MITRE ATT&CK](https://attack.mitre.org/) mappings, this project focuses on how attacks actually unfold in real environments:
+
+- How attackers move from initial access to full compromise
+- What telemetry is realistically available at each stage
 - Why detections fail, drift, or generate noise
-- How attackers adapt to evade detection logic  
+- How attackers adapt to evade detection logic
+
+The goal is to bridge the gap between theoretical techniques and practical detection engineering.
 
 
 ## Repository Structure
-- [cases/](./cases/) → Real-world inspired attack scenarios analyzed end-to-end, from behavior to detection and validation
+- [cases/](./cases/) → Real-world inspired attack scenarios analyzed end-to-end, from behavior to detection and custom code validation
 - [detections/](./detections/) → Reusable detection logic based on common attacker behaviors, independent of specific tools or cases
+- [tools/](./tools/) → Commonly abused tools and techniques, analyzed from a behavioral and detection perspective for reuse across attack scenarios

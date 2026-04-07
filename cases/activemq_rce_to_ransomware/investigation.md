@@ -29,9 +29,9 @@ Their intent is not to immediately disrupt the system, but to:
 
 1. Initial access
     - Remote code execution via exposed Apache ActiveMQ service
-    - Payload retrieval using [certutil](./tools/certutil.md) utility
+    - Payload retrieval using [certutil](../tools/certutil.md) utility
 2. ~40 minutes later
-    - Deployment of [Meterpreter](./tools/meterpreter.md) for interactive control
+    - Deployment of [Meterpreter](../tools/meterpreter.md) for interactive control
     - Privilege escalation to SYSTEM
     - LSASS access (credential dumping)
 4. ~20 minutes later
@@ -39,7 +39,7 @@ Their intent is not to immediately disrupt the system, but to:
     - Lateral movement begins using harvested credentials
 5. Later stages
     - Persistence mechanisms established
-    - Ransomware deployment using [LockBit](/tools/lockbit.md)
+    - Ransomware deployment using [LockBit](../tools/lockbit.md)
 
 **Key insight:** There is a ~40-minute window before credential access and expansion begin. This is the only phase where the attacker is actively generating detectable artifacts, but hasn’t established reusable access yet.
 

@@ -180,4 +180,4 @@ Ability to:
 
 ## **MITRE ATT&CK Mapping**
 
-![Mitre ATT&CK Mapping](./images/Apache_ActiveMQ_Server_Exploit.svg)
+![Mitre ATT&CK Mapping](../../images/Apache_ActiveMQ_Server_Exploit.svg)

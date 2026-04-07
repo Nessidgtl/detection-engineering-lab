@@ -28,6 +28,6 @@ This project emphasizes:
 
 ## Contact
 
-Interested in Detection Engineering and Blue Team roles focused on real-world, behavior-based detection.
+Interested in Detection Engineering and Blue Team roles focused on real-world, behavior-based detection
 - Email: [nessi.dgtl@gmail.com](mailto:nessi.dgtl@gmail.com)
 - LinkedIn: https://www.linkedin.com/in/anna-nechaeva-240283188

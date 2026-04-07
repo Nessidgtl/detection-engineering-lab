@@ -69,8 +69,7 @@ sequence by host.id with maxspan=5m
 ]
 
 /* 4. Optional: dump artifact */
-?[file where event.type == "creation" and file.extension == "dmp"
-]
+?[file where event.type == "creation" and file.extension == "dmp"]
 
 ```
 

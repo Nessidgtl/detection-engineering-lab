@@ -131,6 +131,7 @@ sequence by host.id with maxspan=45m
     not process.name in ("MsMpEng.exe","csrss.exe","wininit.exe")
 ]
 ```
+**Detection Review and Validation included in the following separate document [here](./validation.md)*
 
 ## **Detection dependencies**
 

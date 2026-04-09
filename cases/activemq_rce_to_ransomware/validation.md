@@ -1,6 +1,6 @@
 # **Detection Validation: Execution → Shell → LSASS**
 
-**Based on [Original Conceptual Detection](./activemq_rce_to_ransomware/investigation.md#detection-logic-eql) (Apache ActiveMQ case)*
+**Based on [Original Conceptual Detection](./investigation.md#detection-logic-eql) (Apache ActiveMQ case)*
 
 ### **Summary:**
 

@@ -24,7 +24,7 @@ This project emphasizes:
 ## Repository Structure
 - [cases/](./cases/) → Real-world inspired attack scenarios analyzed end-to-end
 - [tools/](./tools/) → Commonly abused tools and techniques
-- [patterns/](./behavior_patterns/) → Reusable attacker behaviors across scenarios
+- [patterns/](./patterns/) → Reusable attacker behaviors across scenarios
 
 ## Contact
 

@@ -4,7 +4,7 @@ Most detection portfolios stop at writing a rule. This one doesn't.
 
 Each case in this repository takes a real-world attack scenario and works through the full detection lifecycle: understanding how the attack unfolds, identifying the highest-value detection window, writing the rule, testing it against real telemetry, documenting what broke, and iterating until the detection holds up under realistic conditions.
 
-The focus is on the analytical work that makes detections survive in production — not on tool familiarity or signature writing.
+The focus is on the analytical work that makes detections survive in production - not on tool familiarity or signature writing.
 
 
 ## What's Inside

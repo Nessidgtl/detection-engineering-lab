@@ -1,33 +1,54 @@
 # Detection Engineering Lab
 
-Hands-on detection engineering lab focused on translating attacker behavior into practical, testable detections based on real-world scenarios.
+Most detection portfolios stop at writing a rule. This one doesn't.
 
-Most detections fail in real environments because they don’t reflect how attacks actually unfold. This project focuses on understanding that gap and building detections that work under realistic conditions.
+Each case in this repository takes a real-world attack scenario and works through the full detection lifecycle: understanding how the attack unfolds, identifying the highest-value detection window, writing the rule, testing it against real telemetry, documenting what broke, and iterating until the detection holds up under realistic conditions.
 
-
-## Focus Areas
-- Decomposing attacks into step-by-step behavior chains
-- Understanding system-level behavior (processes, tokens, logs)
-- Building detections from *behavior*, not tools or signatures
-- Identifying false positives, blind spots, and bypass opportunities
+The focus is on the analytical work that makes detections survive in production — not on tool familiarity or signature writing.
 
 
-## Approach
-This project emphasizes:
+## What's Inside
 
-- How attackers move from initial access to full compromise
-- What telemetry is realistically available at each stage
-- Why detections fail, drift, or generate noise
-- How attackers adapt to evade detection logic
+**[cases/](./cases/)** - End-to-end detection investigations built from real attack reports. Each case includes:
+- An investigation narrative identifying *where* in the attack chain detection matters most and *why*
+- Detection logic written in EQL, tested and validated in a lab environment
+- Honest documentation of what failed during testing and how the detection was improved
+- Bypass analysis, false positive assessment, and triage guidance
+
+**[tools/](./tools/)** - Behavioral profiles of commonly abused tools and malware families, focused on what they look like in telemetry rather than what they are
 
 
-## Repository Structure
-- [cases/](./cases/) → Real-world inspired attack scenarios analyzed end-to-end
-- [tools/](./tools/) → Commonly abused tools and techniques
-- [patterns/](./patterns/) → Reusable attacker behaviors across scenarios
+## Cases
+
+| Case | ATT&CK Focus | Detection Target | Status |
+|------|-------------|-------------------|--------|
+| [Apache ActiveMQ → LockBit](./cases/activemq_rce_to_ransomware/) | Initial Access → Credential Access | Service-origin execution → shell → LSASS access within a constrained time window | Validated (v2) |
+| *More cases in progress* | | | |
+
+
+## Methodology
+
+Every case follows the same process:
+
+1. **Attack decomposition** - Break down a real intrusion report into a step-by-step behavior chain with timestamps and dependencies
+2. **Detection window identification** - Find the moment where the attacker is generating detectable artifacts but hasn't yet achieved their objective (like credentials harvested or lateral movement started)
+3. **Detection design** - Write a behavioral rule targeting that window, chaining weak signals into a high-confidence sequence
+4. **Validation** - Test against real telemetry in a lab (Windows VM + Sysmon + Elastic Security), document what the telemetry actually looks like, fix what breaks
+5. **Iteration** - Remove fragile assumptions, expand coverage based on observed behavior, document known bypasses and limitations
+
+The goal is detections that work because they target behavior the attacker *cannot easily change*, not because they match a specific tool or signature.
+
+
+## Lab Environment
+
+- Windows VM with Sysmon (ProcessCreate + ProcessAccess)
+- Elastic Security as SIEM
+- Manual attack simulation (no automated frameworks - each step is executed and observed individually)
+
 
 ## Contact
 
 Interested in Detection Engineering and Blue Team roles focused on real-world, behavior-based detection
+
 - Email: [nessi.dgtl@gmail.com](mailto:nessi.dgtl@gmail.com)
-- LinkedIn: https://www.linkedin.com/in/anna-nechaeva-240283188
+- LinkedIn: [linkedin.com/in/anna-nechaeva-240283188](https://www.linkedin.com/in/anna-nechaeva-240283188)

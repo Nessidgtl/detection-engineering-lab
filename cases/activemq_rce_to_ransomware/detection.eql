@@ -1,0 +1,29 @@
+sequence by host.id with maxspan=45m
+
+/* 1. Suspicious execution from service-linked or user-writable context */
+[process where event.type == "start" and (
+    /* broadened parent coverage to reflect real execution paths */
+    process.parent.name in ("java.exe","javaw.exe","powershell.exe","cmd.exe","services.exe","svchost.exe") and
+
+    /* focus on high-signal locations commonly used for staging */
+    process.executable : (
+        "C:\\Users\\*",
+        "C:\\Windows\\Temp\\*",
+        "C:\\ProgramData\\*"
+    )
+)]
+
+/* 2. Shell / execution stage */
+[process where event.type == "start" and
+    /* common interpreter and LOLBin execution */
+    process.name in ("cmd.exe","powershell.exe","rundll32.exe")
+]
+
+/* 3. LSASS access (high-confidence signal) */
+[process where event.code == "10" and
+    /* Sysmon ProcessAccess event */
+    winlog.event_data.TargetImage like "*lsass.exe" and
+
+    /* exclude common legitimate access */
+    not process.name in ("MsMpEng.exe","csrss.exe","wininit.exe")
+]

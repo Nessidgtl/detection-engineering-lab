@@ -32,10 +32,10 @@ Their intent is not to immediately disrupt the system, but to:
     - Deployment of [Meterpreter](../../tools/meterpreter.md) for interactive control
     - Privilege escalation to SYSTEM
     - LSASS access (credential dumping)
-4. ~20 minutes later
+3. ~20 minutes later
     - SMB scanning across the network
     - Lateral movement begins using harvested credentials
-5. Later stages
+4. Later stages
     - Persistence mechanisms established
     - Ransomware deployment using [LockBit](../../tools/lockbit.md)
 

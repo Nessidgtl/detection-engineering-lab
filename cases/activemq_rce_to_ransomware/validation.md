@@ -4,7 +4,7 @@
 
 ### **Summary:**
 
-Final version of the detection is designed to target indirect or service-like execution followed by shell activity and LSASS access within a short time window.
+Final version of the detection is designed to target execution from user-writable or service-linked context followed by shell activity and LSASS access within a short time window.
 
 During validation, it:
 
@@ -175,10 +175,12 @@ rundll32.exe C:\\Windows\\System32\\comsvcs.dll, MiniDump $lsassPid C:\\ProgramD
 - Detection uses `sequence by host.id`
 - Avoids over-reliance on strict parent-child relationships
 
-### 3. Leverage strong command-line visibility
+### 3. Targeted command-line filtering on LOLBins
 
-- Detection benefits from `process.command_line` and `process.args`
-- Future improvement: explicitly key off encoded PowerShell (`enc`) and LSASS access patterns
+- rundll32.exe is gated on the comsvcs.dll / MiniDump command-line pattern, the specific LSASS dump technique observed in the source incident
+- Shells (cmd.exe, powershell.exe) remain unconstrained at this stage to preserve coverage of varied attacker behavior
+- Future improvement: extend command-line gating to other LOLBins (wmic, mshta) as alternative LSASS techniques are added
+
 
 ### 4. Expand parent process coverage
 
@@ -229,33 +231,44 @@ rundll32.exe C:\\Windows\\System32\\comsvcs.dll, MiniDump $lsassPid C:\\ProgramD
 
 *Design notes and considerations (inline)*
 
-```
+```eql
+
 sequence by host.id with maxspan=45m
 
 /* 1. Suspicious execution from service-linked or user-writable context */
 [process where event.type == "start" and (
-    /* relaxed parent constraints */
-    process.parent.name in ("java.exe","javaw.exe","powershell.exe","cmd.exe","services.exe","svchost.exe") and
+    /* relaxed parent constraints — reflects real execution chains observed during validation */
+    process.parent.name in (
+        "java.exe","javaw.exe","powershell.exe",
+        "cmd.exe","services.exe","svchost.exe"
+    ) and
 
-    /* kept strong signal: suspicious locations */
+    /* kept strong signal: suspicious staging locations */
     process.executable : (
-        "C:\\\\Users\\\\*",
-        "C:\\\\Windows\\\\Temp\\\\*",
-        "C:\\\\ProgramData\\\\*"
+        "C:\\Users\\*",
+        "C:\\Windows\\Temp\\*",
+        "C:\\ProgramData\\*"
     )
 )]
 
-/* 2. Suspicious command execution (aligned with real behavior) */
+/* 2. Shell or LSASS-dump LOLBin execution
+   - shells count on their own (broad command-line visibility downstream)
+   - rundll32 counts only when invoking the comsvcs.dll MiniDump technique */
 [process where event.type == "start" and
-    process.name in ("cmd.exe","powershell.exe","rundll32.exe")
-    /* removed fragile exclusions */
+    (
+        process.name in ("cmd.exe","powershell.exe")
+        or
+        (process.name == "rundll32.exe" and
+         process.command_line : ("*comsvcs.dll*", "*MiniDump*"))
+    )
 ]
 
-/* 3. LSASS access excluding known benign processes */
+/* 3. LSASS access (Sysmon Event ID 10), excluding known benign processes */
 [process where event.code == "10" and
     winlog.event_data.TargetImage like "*lsass.exe" and
     not process.name in ("MsMpEng.exe","csrss.exe","wininit.exe")
 ]
+
 ```
 
 **Designed as a baseline detection to be tuned per environment.*

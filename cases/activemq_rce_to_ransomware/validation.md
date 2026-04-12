@@ -178,9 +178,9 @@ rundll32.exe C:\\Windows\\System32\\comsvcs.dll, MiniDump $lsassPid C:\\ProgramD
 
 ### 3. Targeted command-line filtering on LOLBins
 
-- 'rundll32.exe' is gated on the 'comsvcs.dll' / 'MiniDump' command-line pattern, the specific LSASS dump technique observed in the source incident
-- Shells ('cmd.exe', 'powershell.exe') remain unconstrained at this stage to preserve coverage of varied attacker behavior
-- Future improvement: extend command-line gating to other LOLBins (like 'wmic', 'mshta') as alternative LSASS techniques are added
+- `rundll32.exe` is gated on the `comsvcs.dll` / `MiniDump` command-line pattern, the specific LSASS dump technique observed in the source incident
+- Shells (`cmd.exe`, `powershell.exe`) remain unconstrained at this stage to preserve coverage of varied attacker behavior
+- Future improvement: extend command-line gating to other LOLBins (like `wmic` or `mshta`) as alternative LSASS techniques are added
 
 
 ### 4. Expand parent process coverage

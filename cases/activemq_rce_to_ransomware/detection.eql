@@ -2,10 +2,13 @@ sequence by host.id with maxspan=45m
 
 /* 1. Suspicious execution from service-linked or user-writable context */
 [process where event.type == "start" and (
-    /* broadened parent coverage to reflect real execution paths */
-    process.parent.name in ("java.exe","javaw.exe","powershell.exe","cmd.exe","services.exe","svchost.exe") and
+    /* relaxed parent constraints — reflects real execution chains observed during validation */
+    process.parent.name in (
+        "java.exe","javaw.exe","powershell.exe",
+        "cmd.exe","services.exe","svchost.exe"
+    ) and
 
-    /* focus on high-signal locations commonly used for staging */
+    /* kept strong signal: suspicious staging locations */
     process.executable : (
         "C:\\Users\\*",
         "C:\\Windows\\Temp\\*",
@@ -13,17 +16,20 @@ sequence by host.id with maxspan=45m
     )
 )]
 
-/* 2. Shell / execution stage */
+/* 2. Shell or LSASS-dump LOLBin execution
+   - shells count on their own (broad command-line visibility downstream)
+   - rundll32 counts only when invoking the comsvcs.dll MiniDump technique */
 [process where event.type == "start" and
-    /* common interpreter and LOLBin execution */
-    process.name in ("cmd.exe","powershell.exe","rundll32.exe")
+    (
+        process.name in ("cmd.exe","powershell.exe")
+        or
+        (process.name == "rundll32.exe" and
+         process.command_line : ("*comsvcs.dll*", "*MiniDump*"))
+    )
 ]
 
-/* 3. LSASS access (high-confidence signal) */
+/* 3. LSASS access (Sysmon Event ID 10), excluding known benign processes */
 [process where event.code == "10" and
-    /* Sysmon ProcessAccess event */
     winlog.event_data.TargetImage like "*lsass.exe" and
-
-    /* exclude common legitimate access */
     not process.name in ("MsMpEng.exe","csrss.exe","wininit.exe")
 ]

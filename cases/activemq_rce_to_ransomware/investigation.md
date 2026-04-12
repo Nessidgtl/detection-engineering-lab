@@ -5,13 +5,11 @@
 
 ## **Why This Report**
 
-Exploitation of an exposed service followed by credential theft and lateral movement is one of the most common real-world intrusion patterns. It reflects a classic and highly effective attacker chain: initial access → credential access → internal spread.
+An attacker exploits an exposed service, gets code execution, and within the hour is running Mimikatz against LSASS. Forty minutes later they have domain credentials and are pivoting across the network. Two hours after the initial exploit, ransomware is detonating. This is one of the most common real-world intrusion patterns - initial access → credential access → internal spread - and most defenses miss the only window where it’s still containable.
 
-What makes this pattern particularly important is not just its frequency, but how it exposes a critical gap in many defensive strategies.
+Detection in real environments tends to cluster around two extremes. On one side, defenders may catch the initial exploit - but this is inconsistent, dependent on visibility, signatures, or specific vulnerabilities. On the other side, detection often happens only at the final high-signal stage like ransomware execution, when the impact is already severe and containment is far harder.
 
-In real environments, detection tends to cluster around two extremes. On one side, defenders may catch the initial exploit - but this is often inconsistent, dependent on available visibility, signatures, or specific vulnerabilities. On the other side, detection frequently occurs only at the final high-signal stage, such as ransomware execution - when the impact is already severe and containment is far more difficult.
-
-What is often missed is the post-exploitation phase in between. This is the window where attackers are establishing persistence, harvesting credentials, and moving laterally, but *have not yet reached their end goal*. From a defensive perspective, this is the most valuable moment to detect and respond, because access is still containable and damage can still be prevented.
+What gets missed is the post-exploitation phase in between. This is the window where attackers are establishing persistence, harvesting credentials, and moving laterally - but have not yet reached their end goal. From a defensive perspective, this is the most valuable moment to detect and respond, because access is still localized and damage can still be prevented.
 
 ## **Attack Overview**
 

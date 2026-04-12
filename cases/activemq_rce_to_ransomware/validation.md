@@ -232,7 +232,6 @@ rundll32.exe C:\\Windows\\System32\\comsvcs.dll, MiniDump $lsassPid C:\\ProgramD
 *Design notes and considerations (inline)*
 
 ```eql
-
 sequence by host.id with maxspan=45m
 
 /* 1. Suspicious execution from service-linked or user-writable context */

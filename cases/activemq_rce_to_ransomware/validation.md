@@ -154,8 +154,9 @@ rundll32.exe C:\\Windows\\System32\\comsvcs.dll, MiniDump $lsassPid C:\\ProgramD
     - obfuscation
     - imperfect lineage
 - Strongest signals:
-    - LSASS access
-    - command-line behavior
+    - LSASS access (high-confidence behavior)
+    - execution from user-writable directories
+    - multi-stage process chaining within a short time window
 - Weakest signals:
     - parent-child relationships
 - Key takeaway:

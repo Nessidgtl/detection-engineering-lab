@@ -174,7 +174,7 @@ Elastic alert rule
 
 ## **Prerequisites**
 
-Before the comparison script can run, Assemblyline must already analyze both the old and new extension packages and return structured JSON reports. The script depends on the specific fields being present in those reports.
+Before the comparison script can run, [Assemblyline](../../tools/assemblyline.md) must already analyze both the old and new extension packages and return structured JSON reports. The script depends on the specific fields being present in those reports.
 
 ### **Assemblyline services activated:**
 

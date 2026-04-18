@@ -184,10 +184,6 @@ if added_domains and new_detections and worker_updated and new_content_scripts:
         "NEW-DOMAIN-NEW-ASSEMBLYLINE-DETECTIONS-UPDATED-BACKGROUND-SCRIPT-AND-CONTENT-SCRIPT"
     )
 
-# Additional: score increase + new files
-if score_increased and new_content_scripts:
-    matched_rules.append("SCORE-INCREASE-WITH-NEW-CONTENT-SCRIPTS")
-
 if not matched_rules:
     return None
 

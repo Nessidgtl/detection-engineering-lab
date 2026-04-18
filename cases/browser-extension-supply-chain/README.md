@@ -16,4 +16,4 @@
 | **Detection Version** | v1 ([compare_extension.py](./compare_extension.py)) |
 
 ---
-→ [Full Investigation](./investigation.md) · [Validation & Iteration Log](./validation.md) · [Detection Script](./compare_extension.py) · [Filebeat Config](./filebeat.yml)
+→ [Full Investigation](./investigation.md) · [Validation & Iteration Log](./validation.md) · [Detection Script](./compare_extension.py)

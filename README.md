@@ -23,7 +23,7 @@ The focus is on the analytical work that makes detections survive in production 
 | Case | ATT&CK Focus | Detection Target | Status |
 |------|-------------|-------------------|--------|
 | [Apache ActiveMQ → LockBit](./cases/activemq_rce_to_ransomware/) | Initial Access → Credential Access | Service-origin execution → shell → LSASS access within a constrained time window | Validated (v2) |
-| [Browser Extension Supply Chain](./cases/extension_supply_chain/) | Supply Chain Compromise → Exfiltration | Structural delta between extension versions - co-occurring changes to worker, scripts, and domains before execution | Validated (v1) |
+| [Browser Extension Supply Chain](./cases/browser_extension_supply_chain/) | Supply Chain Compromise → Exfiltration | Structural delta between extension versions - co-occurring changes to worker, scripts, and domains before execution | Validated (v1) |
 | *More cases in progress* | | | |
 
 

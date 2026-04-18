@@ -207,7 +207,7 @@ Assemblyline's report is nested and keyed by SHA256, so the script traverses sev
 
 ## **Detection Logic**
 
-### Comparison Script ([`comparison_extension.py`](./comparison_extension.py))
+### Comparison Script ([`compare_extension.py`](./compare_extension.py))
 
 Reads two Assemblyline JSON reports, applies five detection rules against the version delta, and writes a structured alert to disk if any rule fires.
 

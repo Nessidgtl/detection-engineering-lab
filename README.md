@@ -52,4 +52,4 @@ The goal is detections that work because they target behavior the attacker *cann
 Interested in Detection Engineering and Blue Team roles focused on real-world, behavior-based detection
 
 - Email: [nessi.dgtl@gmail.com](mailto:nessi.dgtl@gmail.com)
-- LinkedIn: [linkedin.com/in/anna-nechaeva-240283188](https://www.linkedin.com/in/anna-nechaeva-240283188)
+- LinkedIn: [https://www.linkedin.com/in/anya-nessi-240283188](https://www.linkedin.com/in/anya-nessi-240283188)

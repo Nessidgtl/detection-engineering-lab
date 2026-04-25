@@ -1,0 +1,76 @@
+// Scarlet Goldfinch / ClickFix Paste-and-Run Process Chain
+//
+// EQL sequence catching the behavioral process lineage created by paste-and-run
+// delivery mechanisms. Targets the structural invariant that survives across
+// 7+ documented Scarlet Goldfinch epochs of command-line obfuscation evolution.
+//
+// Detection design rationale: investigation.md
+// Lab testing and adjustments: validation.md
+//
+// Target platform: Elastic Security
+// Telemetry source: Elastic Defend (endpoint.events.process)
+// Rule type: Event Correlation (EQL)
+//
+// Required ECS fields:
+//   process.parent.name
+//   process.name
+//   process.entity_id
+//   process.parent.entity_id
+//   process.pe.original_file_name (fallback for renamed binaries)
+//
+// MITRE ATT&CK:
+//   T1204.004  User Execution: Malicious Copy and Paste (primary)
+//   T1059.001  Command and Scripting Interpreter: PowerShell
+//   T1059.003  Command and Scripting Interpreter: Windows Command Shell
+//   T1218.005  System Binary Proxy Execution: Mshta
+//   T1105      Ingress Tool Transfer
+//   T1027      Obfuscated Files or Information
+//
+// Known limitations (see investigation.md and validation.md):
+//   - Intermediate parent processes (e.g., forfiles between explorer and cmd) break stage 1
+//   - Invoke-CimMethod / WMI reparenting bypasses the explorer.exe parent match
+//   - FileFix variants produce different lineage
+//   - Administrator Run-dialog workflows produce known false positives
+//
+// Triage: pair with companion KQL rule (detection-lolbin.kql) for LOLBin egress.
+// Co-occurrence on same host within 2 minutes = high confidence indicator.
+
+sequence with maxspan=2m
+  [process where
+      process.parent.name == "explorer.exe"
+      and process.name in (
+          "cmd.exe",
+          "powershell.exe",
+          "pwsh.exe",
+          "wscript.exe",
+          "cscript.exe"
+      )] by process.entity_id
+
+  [process where
+      process.parent.name in (
+          "cmd.exe",
+          "powershell.exe",
+          "pwsh.exe",
+          "wscript.exe",
+          "cscript.exe"
+      )
+      and (
+          process.name in (
+              "mshta.exe",
+              "curl.exe",
+              "certutil.exe",
+              "bitsadmin.exe",
+              "forfiles.exe",
+              "hh.exe",
+              "regsvr32.exe",
+              "finger.exe"
+          )
+          or process.pe.original_file_name in (
+              "mshta.exe",
+              "curl.exe",
+              "CertUtil.exe",
+              "bitsadmin.exe",
+              "forfiles.exe",
+              "finger.exe"
+          )
+      )] by process.parent.entity_id

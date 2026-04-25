@@ -18,14 +18,6 @@
 //   process.parent.entity_id
 //   process.pe.original_file_name (fallback for renamed binaries)
 //
-// MITRE ATT&CK:
-//   T1204.004  User Execution: Malicious Copy and Paste (primary)
-//   T1059.001  Command and Scripting Interpreter: PowerShell
-//   T1059.003  Command and Scripting Interpreter: Windows Command Shell
-//   T1218.005  System Binary Proxy Execution: Mshta
-//   T1105      Ingress Tool Transfer
-//   T1027      Obfuscated Files or Information
-//
 // Known limitations (see investigation.md and validation.md):
 //   - Intermediate parent processes (e.g., forfiles between explorer and cmd) break stage 1
 //   - Invoke-CimMethod / WMI reparenting bypasses the explorer.exe parent match

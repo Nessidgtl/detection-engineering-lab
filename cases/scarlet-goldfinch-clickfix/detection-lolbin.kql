@@ -1,25 +1,8 @@
 // Scarlet Goldfinch LOLBin External Egress
 //
-// KQL custom query catching download-capable LOLBins making outbound connections
-// to external infrastructure. Companion rule to detection.eql; together they
-// cover the two behavioral invariants of paste-and-run delivery.
-//
 // Target platform: Elastic Security
 // Telemetry source: Elastic Defend (endpoint.events.network)
 // Rule type: Custom query (KQL)
-//
-// Required ECS fields:
-//   process.name
-//   event.category
-//   event.action
-//   destination.ip
-//
-// Known limitations (see investigation.md and validation.md):
-//   - Fires on legitimate scheduled task egress where curl is used in admin scripts
-//     (mitigation: add not process.parent.name: "svchost.exe" if this pattern is common)
-//   - Fires on legitimate admin Run-dialog workflows
-//   - Higher noise than the process chain rule by design; relies on triage correlation
-//     with detection.eql for high confidence
 //
 // Triage: high confidence when this rule fires within 2 minutes of detection.eql
 // on the same host.name.

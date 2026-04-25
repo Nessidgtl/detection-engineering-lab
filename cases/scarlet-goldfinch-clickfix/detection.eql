@@ -4,9 +4,6 @@
 // delivery mechanisms. Targets the structural invariant that survives across
 // 7+ documented Scarlet Goldfinch epochs of command-line obfuscation evolution.
 //
-// Detection design rationale: investigation.md
-// Lab testing and adjustments: validation.md
-//
 // Target platform: Elastic Security
 // Telemetry source: Elastic Defend (endpoint.events.process)
 // Rule type: Event Correlation (EQL)

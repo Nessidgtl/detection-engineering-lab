@@ -4,9 +4,6 @@
 // to external infrastructure. Companion rule to detection.eql; together they
 // cover the two behavioral invariants of paste-and-run delivery.
 //
-// Detection design rationale: investigation.md
-// Lab testing and adjustments: validation.md
-//
 // Target platform: Elastic Security
 // Telemetry source: Elastic Defend (endpoint.events.network)
 // Rule type: Custom query (KQL)

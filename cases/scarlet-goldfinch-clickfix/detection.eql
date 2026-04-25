@@ -1,25 +1,8 @@
 // Scarlet Goldfinch / ClickFix Paste-and-Run Process Chain
 //
-// EQL sequence catching the behavioral process lineage created by paste-and-run
-// delivery mechanisms. Targets the structural invariant that survives across
-// 7+ documented Scarlet Goldfinch epochs of command-line obfuscation evolution.
-//
 // Target platform: Elastic Security
 // Telemetry source: Elastic Defend (endpoint.events.process)
 // Rule type: Event Correlation (EQL)
-//
-// Required ECS fields:
-//   process.parent.name
-//   process.name
-//   process.entity_id
-//   process.parent.entity_id
-//   process.pe.original_file_name (fallback for renamed binaries)
-//
-// Known limitations (see investigation.md and validation.md):
-//   - Intermediate parent processes (e.g., forfiles between explorer and cmd) break stage 1
-//   - Invoke-CimMethod / WMI reparenting bypasses the explorer.exe parent match
-//   - FileFix variants produce different lineage
-//   - Administrator Run-dialog workflows produce known false positives
 //
 // Triage: pair with companion KQL rule (detection-lolbin.kql) for LOLBin egress.
 // Co-occurrence on same host within 2 minutes = high confidence indicator.

@@ -45,5 +45,7 @@ Manual attack simulation across both. Each step executed and observed individual
 
 ## Contact
 
+Interested in Detection Engineering and Blue Team roles focused on real-world, behavior-based detection
+
 - Email: nessi.dgtl@gmail.com
 - LinkedIn: [anya-nessi-240283188](https://www.linkedin.com/in/anya-nessi-240283188)
